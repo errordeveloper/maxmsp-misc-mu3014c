@@ -1,0 +1,3 @@
+[submodule "import/olControls"]
+	path = import/olControls
+	url = git://github.com/olilarkin/olControls.git
