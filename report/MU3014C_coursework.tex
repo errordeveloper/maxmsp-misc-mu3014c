@@ -1,25 +1,33 @@
-% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
-% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
-
-% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
-
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
 \documentclass[12pt]{article}
-\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
-%\geometry{landscape}                % Activate for for rotated page geometry
-%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{geometry}
+\geometry{a4paper}
 \usepackage{graphicx}
 \usepackage{amssymb}
 
 \usepackage{pst-sigsys}
 
 
-% Will Robertson's fontspec.sty can be used to simplify font choices.
-% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
-% and change "Hoefler Text" to any of these choices.
+\def\NOHREF{}
+
+\ifdefined\NOHREF
+\usepackage{url}
+\newcommand{\URL}[1]{\[ \texttt{\emph{#1}} \]}
+\newcommand{\href}[2]{#2 (\texttt{\emph{\url{#1}}})} %% not needed probably
+\newcommand{\Href}[2]{{#2}} %% fake version for printing
+\else
+\usepackage{hyperref}
+\newcommand{\Href}[2]{\href{#1}{#2}} %% use this for proper href
+\newcommand{\URL}[1]{\[ \Href{#1}{\texttt{\emph{#1}}} \]}
+\fi
+
+%% use \Href  and for printing we use \cite{something}
+%% so we end up with link to the URL and bibliography
+%% reference number as well. If \Href is fake there
+%% will be no URL in the text.
+\newcommand{\AltRef}[3]{\Href{#2}{#1} \cite{#3}}
 
 \usepackage{fontspec,xltxtra,xunicode}
 \defaultfontfeatures{Mapping=tex-text}
@@ -27,29 +35,23 @@
 \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
 \setmonofont[Scale=MatchLowercase]{Andale Mono}
 
-\title{DSP Programming\\Digital Reverberator Design in Max/MSP\\using Shroder Algorithm}
-\author{Ilya Dmitrichenko}
-%\date{}                                           % Activate to display a given date or no date
+\title{Digital Reverberator Design in Max/MSP\\using Schroder Algorithm}
+\author{Ilya Dmitrichenko
+\\\small DSP Programming Case Study (MU3014C)
+\\\small London Metropolitan University}
+
+\date{\today}
 
 \begin{document}
 \maketitle
 
+\cite{farnell2010designing, moorer1979about, puckette2007theory,
+gardner1992virtual, gardner1998algorithms}
 
-% https://docs.google.com/viewer?a=v&url=http://aspress.co.uk/ds/pdf/pd_intro.pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% For many users, the previous commands will be enough.
-% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
-% using the International Panel in System Preferences.
-% Unicode must be typeset using a font containing the appropriate characters.
-% Remove the comment signs below for examples.
+\bibliographystyle{acm}
 
-% \newfontfamily{\A}{Geeza Pro}
-% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
-% \newfontfamily{\J}[Scale=0.85]{Osaka}
-
-% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
-% and here's some Japanese: {\J 今日は}.
-
-
+\bibliography{MU3014C_coursework}
 
 \end{document}  
