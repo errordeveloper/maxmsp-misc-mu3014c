@@ -211,8 +211,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 435.0, 285.0, 66.0, 20.0 ],
-					"text" : "slide~ 500"
+					"patching_rect" : [ 405.0, 285.0, 89.0, 20.0 ],
+					"text" : "slide~ 500 500"
 				}
 
 			}
@@ -575,8 +575,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 420.0, 510.0, 66.0, 20.0 ],
-					"text" : "slide~ 500"
+					"patching_rect" : [ 390.0, 510.0, 89.0, 20.0 ],
+					"text" : "slide~ 500 500"
 				}
 
 			}
