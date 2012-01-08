@@ -119,8 +119,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
-					"patching_rect" : [ 615.0, 105.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"patching_rect" : [ 615.0, 105.0, 46.0, 20.0 ],
+					"text" : "line~ 0"
 				}
 
 			}

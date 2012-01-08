@@ -50,7 +50,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 735.0, 259.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"text" : "line~ 0"
 				}
 
 			}
@@ -180,7 +180,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 735.0, 439.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"text" : "line~ 0"
 				}
 
 			}
@@ -296,7 +296,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 525.0, 259.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"text" : "line~ 0"
 				}
 
 			}
@@ -324,7 +324,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 525.0, 439.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"text" : "line~ 0"
 				}
 
 			}

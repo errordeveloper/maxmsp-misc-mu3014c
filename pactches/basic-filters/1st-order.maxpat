@@ -64,7 +64,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 510.0, 244.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"text" : "line~ 0"
 				}
 
 			}
@@ -92,7 +92,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 510.0, 424.0, 53.0, 20.0 ],
-					"text" : "line~ 50"
+					"text" : "line~ 0"
 				}
 
 			}
