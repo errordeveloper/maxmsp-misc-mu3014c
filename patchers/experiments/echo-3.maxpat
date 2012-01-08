@@ -7,7 +7,7 @@
 			"revision" : 1
 		}
 ,
-		"rect" : [ 567.0, 44.0, 984.0, 613.0 ],
+		"rect" : [ 58.0, 44.0, 1222.0, 613.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -27,6 +27,21 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-2",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 217.0, 15.0, 480.0, 33.0 ],
+					"text" : ";\rmax launchbrowser http://crca.ucsd.edu/~msp/techniques/latest/book-html/node124.html"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -901,16 +916,16 @@
 ,
 					"patching_rect" : [ 355.0, 571.0, 379.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p osc"
@@ -1175,16 +1190,16 @@
 ,
 					"patching_rect" : [ 217.0, 598.0, 74.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p mod-echo"
@@ -1449,16 +1464,16 @@
 ,
 					"patching_rect" : [ 247.0, 433.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -1723,16 +1738,16 @@
 ,
 					"patching_rect" : [ 232.0, 373.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -1997,16 +2012,16 @@
 ,
 					"patching_rect" : [ 217.0, 313.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -2271,16 +2286,16 @@
 ,
 					"patching_rect" : [ 202.0, 253.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -2545,33 +2560,19 @@
 ,
 					"patching_rect" : [ 187.0, 193.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-15",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 604.0, 9.0, 150.0, 48.0 ],
-					"text" : "http://crca.ucsd.edu/~msp/techniques/latest/book-html/node124.html"
 				}
 
 			}
@@ -2900,16 +2901,16 @@
 ,
 					"patching_rect" : [ 172.0, 133.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"

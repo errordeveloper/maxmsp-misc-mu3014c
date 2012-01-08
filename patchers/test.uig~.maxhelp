@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 0,
-			"revision" : 1
+			"revision" : 3
 		}
 ,
 		"rect" : [ 0.0, 44.0, 872.0, 649.0 ],
@@ -43,7 +43,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 544.0, 285.0, 20.0, 20.0 ]
+					"patching_rect" : [ 508.0, 360.0, 20.0, 20.0 ]
 				}
 
 			}
@@ -56,7 +56,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 500.0, 317.0, 94.0, 20.0 ],
+					"patching_rect" : [ 508.0, 407.0, 94.0, 20.0 ],
 					"text" : "click~ 1. 0. 0. 0."
 				}
 
@@ -71,7 +71,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 331.0, 398.0, 44.0, 44.0 ],
+					"patching_rect" : [ 209.0, 43.0, 44.0, 44.0 ],
 					"prototypename" : "helpfile"
 				}
 

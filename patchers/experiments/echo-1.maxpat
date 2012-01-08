@@ -30,6 +30,21 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"id" : "obj-4",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 347.5, -1.0, 480.0, 33.0 ],
+					"text" : ";\rmax launchbrowser http://crca.ucsd.edu/~msp/techniques/latest/book-html/node124.html"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -663,16 +678,16 @@
 ,
 					"patching_rect" : [ 247.0, 448.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -937,16 +952,16 @@
 ,
 					"patching_rect" : [ 232.0, 388.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -1232,16 +1247,16 @@
 ,
 					"patching_rect" : [ 217.0, 328.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -1527,16 +1542,16 @@
 ,
 					"patching_rect" : [ 202.0, 268.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
@@ -1822,33 +1837,19 @@
 ,
 					"patching_rect" : [ 187.0, 208.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 3,
-					"fontname" : "Arial",
-					"fontsize" : 16.0,
-					"id" : "obj-15",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 378.5, 12.0, 536.0, 25.0 ],
-					"text" : "http://crca.ucsd.edu/~msp/techniques/latest/book-html/node124.html"
 				}
 
 			}
@@ -2198,16 +2199,16 @@
 ,
 					"patching_rect" : [ 172.0, 148.0, 77.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"fontface" : 0,
-						"fontsize" : 12.0,
-						"default_fontface" : 0,
-						"digest" : "",
 						"default_fontname" : "Arial",
 						"fontname" : "Arial",
 						"tags" : "",
 						"default_fontsize" : 12.0,
 						"description" : "",
-						"globalpatchername" : ""
+						"globalpatchername" : "",
+						"fontface" : 0,
+						"fontsize" : 12.0,
+						"default_fontface" : 0,
+						"digest" : ""
 					}
 ,
 					"text" : "p early-echo"
