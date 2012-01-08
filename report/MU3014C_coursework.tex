@@ -1,16 +1,20 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[12pt]{article}
+\documentclass[12pt]{report}
 \usepackage{geometry}
 \geometry{a4paper}
 \usepackage{graphicx}
 \usepackage{amssymb}
 
+%\usepackage[numbers]{natbib}
+
+\usepackage{chngcntr}
+
 \usepackage{pst-sigsys}
 
 
-\def\NOHREF{}
+%\def\NOHREF{}
 
 \ifdefined\NOHREF
 \usepackage{url}
@@ -45,12 +49,25 @@
 \begin{document}
 \maketitle
 
+\counterwithout{section}{chapter}
+
+\section{Introduction}
+  \subsection{Project Organization}
+
+\section{Implementation}
+  \subsection{Sources}
+
+  \cite{gardner1998algorithms}
+
+%% Test bibliography:
 \cite{farnell2010designing, moorer1979about, puckette2007theory,
 gardner1992virtual, gardner1998algorithms}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{acm}
+%\bibliographystyle{agsm}
+%\bibliographystyle{plainnat}
 
 \bibliography{MU3014C_coursework}
 
