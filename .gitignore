@@ -1,0 +1,15 @@
+.DS_Store
+*.swp
+*.swp
+*~
+*.aux
+*.bbl
+*.bib
+*.biy
+*.biz
+*.blg
+*.log
+*.out
+*.pdf
+*.synctex.gz
+texput.log
