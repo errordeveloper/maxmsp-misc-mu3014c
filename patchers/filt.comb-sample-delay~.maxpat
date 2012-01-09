@@ -50,7 +50,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 30.0, 240.0, 45.0, 25.0 ],
-					"text" : "x[n]"
+					"text" : "y[n]"
 				}
 
 			}
@@ -115,7 +115,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 30.0, 60.0, 45.0, 25.0 ],
-					"text" : "y[n]"
+					"text" : "x[n]"
 				}
 
 			}
