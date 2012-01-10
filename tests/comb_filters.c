@@ -1,40 +1,55 @@
 #include <stdio.h>
 
-#define SAMPLES 8
+#ifdef PLOT
+#define printf(...) \
+  printf("\n"__VA_ARGS__)
+#endif
+
+#define SIZE      8
 #define GAIN    0.5
 
-#define RESET() \
-  for (i = 0; i < SAMPLES; i++) { \
-    x[i] = y[i] = 0.0; \
-  }; x[0] = 1; d = 0;
+void  comb_test_topology_a (float y[], float x[], 
+    float d, float g) {
+
+  printf("y = < ");
+  for (int i = 0; i < SIZE; i++) {
+  
+    y[i] = d;
+    d = x[i];
+    x[i+1] += d*g;
+  
+    printf("%f ", y[i]);
+  
+  }
+  printf(">\n");
+}
+
+void  comb_test_topology_b (float y[], float x[],
+    float d, float g) {
+
+   printf("y = < ");
+   for (int i = 0; i < SIZE; i++) {
+
+     d = y[i] = x[i] + g*d;
+     printf("%f ", y[i]);
+
+   }
+   printf(">\n");
+}
 
 int main () {
 
-  float x[SAMPLES], y[SAMPLES], g = GAIN, d;
-  int i;
+  float x[SIZE], y[SIZE], g = GAIN, d = 0;
 
-  RESET();
-  printf("y = < ");
-  for (i = 0; i < SAMPLES; i++) {
+# define clear() \
+  for (int i = 0; i < SIZE; i++) { \
+    x[i] = y[i] = 0.0; }; x[0] = 1;
 
-    y[i] = d;
-    d = x[i];
-    x[i+1] = d*g;
+  clear();
+  comb_test_topology_a (y, x, d, g);
 
-    printf("%f ", y[i]);
-
-  }
-  printf(">)\n");
-
-  RESET();
-  printf("y = < ");
-  for (i = 0; i < SAMPLES; i++) {
-
-    d = y[i] = x[i] + g*d;
-    printf("%f ", y[i]);
-
-  }
-  printf(">)\n");
+  clear();
+  comb_test_topology_b (y, x, d, g);
 
   return 0;
 
