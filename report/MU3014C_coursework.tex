@@ -39,7 +39,7 @@
 \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
 \setmonofont[Scale=MatchLowercase]{Andale Mono}
 
-\title{Digital Reverberator Design in Max/MSP\\using Schroder Algorithm}
+\title{Digital Reverberator Design in Max/MSP\\using Schroeder Algorithm}
 \author{Ilya Dmitrichenko
 \\\small DSP Programming Case Study (MU3014C)
 \\\small London Metropolitan University}
@@ -66,8 +66,8 @@
   \footnote{More information can be found on \emph{Git} homepage:
   \URL{http://git-scm.com/about}}, moreover, in addition to a great set of
   benefits of using \emph{Git} itself, the \emph{GitHub} service enables an
-  excellent web integration with simple to use user interface. The entire
-  work history of this project can be examined on-line:
+  excellent web integration with a simple user interface. The entire work
+  history of this project can be examined on-line:
   \URL{https://github.com/errordeveloper/maxmsp-misc-mu3014c/commits}
   There is no need for the reader to be familiar with how to use \emph{Git},
   since the archive of the current version of the code can be downloaded
@@ -76,22 +76,103 @@
 
   % Further in this report any files will be referenced  ...
 
-  In the project's top-level exists `\emph{\texttt{patchers}}` directory, that
+  In the project's top-level exists \emph{\texttt{`patchers`}} directory, that
   is where most of the files of interest are located, unless explicitly specified,
   any of file names mentioned in this report can be found there.
 
 
-  \subsection{}
+  \subsection{Approaches to Reverberator Design}
+
+  Studying the papers which describe various reverberation network topologies,
+  it becomes absolutely clear that the degree of experimentation involved in
+  the design process is usually very high. According to Jon Dattorro's article
+  in the Journal of Audio Engineering Society (1997) \cite{dattorro1997effect},
+  where he included a letter from Barry Blesser, who refers to the conversation
+  with Manfred Schroeder in the late 1970s where Schroeder have said: \emph{"We
+  did the electronic reverberation for amusement because we thought it would be
+  fun. Since it took the better part of a day to do 10 seconds of reverberation,
+  we only ran one sample of music. The notion of delay time selections was random
+  in that we just picked a bunch of numbers and there was no mathematical basis.
+  We just wanted to prove it could be done."} Also John Stautner and Miller
+  Puckette in the article "Designing Multi-Channel Reverberators" (Computer Music
+  Journal, 1982) \cite{puckette1982reverb} point out that \emph{"\dots no attempt
+  has been made to imitate the ambience of an existing room or concert hall,
+  the methods described herein may lead to such applications when they are
+  combined with a consideration of the perceptual importance of attributes of
+  the soundfield in a real room."}. However, the later papers by William Gardner
+  \cite{gardner1992virtual, gardner1998algorithms} suggest formulas to calculate
+  coefficients.
+
+
+  \subsection{Brief Overview of History of Reverb Topologies}
+
+  Manfred Schroeder had been a pioneer in artificial reverberator design, he
+  worked at Bell Laboratories since mid-1950s and published an number of papers
+  in the following two decades \cite{dattorro1997effect}. The original
+  Schroeder's topology consisted of 4 parallel comb filters generating early
+  echoes and 2 all-pass filters all in series \cite{gardner1992virtual}.
+  Moorer suggests that Schroeder's design have exhibited fluttering decay
+  and poor echo density \cite{moorer1979about}. The fluttering (sometimes also
+  called "metallic ringing") can be observed in response to impulsive sounds
+  (for example the snare drum), according to Gardner \cite{gardner1992virtual},
+  though it is still certainly good for short reverberation times and moderate
+  reverberation levels \cite{gardner1998algorithms}. One of the major disadvantages
+  is that it \emph{"\dots does not provide a frequency dependent reverberation time"}.
+  Moorer \cite{moorer1979about} has modified the comb filter block by adding
+  two extra comb filters and a one-pole low-pass filter in the feed-back loop
+  of each of the comb filters. The low-pass in feed-back was intended to
+  dump the higher frequencies similarly to how those are absorbed in air.
+  Moorer's technique has helped to reduce the unnaturally sounding flutter,
+  however it has not eliminated it entirely. There had been a great amount of
+  research in this area, where the two biggest problems had been - eliminate
+  unnatural colouration and achieve the highest echo density. It should be
+  noted that most of the later topologies had been designed by modifying the
+  feedback path. For example, Puckette and Stautner \cite{puckette1982reverb}
+  have achieved much higher echo density in their multi-channel system by
+  using a rotation matrix in the feedback loop. Miller Puckette also presents
+  this as an example\footnote{It had been a trivial task to implement Puckette's
+  reverb in Max and it can be found in the project repository, stored as \texttt{`%
+  \href{https://github.com/errordeveloper/maxmsp-misc-mu3014c/blob/master/patchers/reverb.matrix-rotation.maxpat}{reverb.matrix-rotation.maxpat}`}} in his book "Theory and Technique of Electronic Music"%
+  \cite{puckette2007theory}.
+  Gardner \cite{gardner1998algorithms} also highlighted a number of other
+  various feed-back loop improvements as well as the work of Jean-Marc Jot in
+  early 1990s, who introduced time-varying feed-back correcting algorithm,
+  which deserves a separate case study and the author of this report certainly
+  desires to do so. However, the subject set herein is the earlies reverberator,
+  one which Manfred Schroeder has invented in early 1960s.
+
 
 \section{Implementation}
-  \subsection{Sources}
 
-  \cite{gardner1998algorithms}
 
-%% Test bibliography:
-\cite{farnell2010designing, moorer1979about, puckette2007theory,
-gardner1992virtual, gardner1998algorithms, puckette1982reverb,
-gardner1992reverb}
+  \subsection{Building Blocks}
+
+  The building blocks of a reverberation network are also called unit
+  reverberators and most commonly are at least  ...
+
+  The building blocks of reverberators are filters, however these are slightly
+  different from filters which are used for ...
+  OR:
+
+  The building blocks of almost any signal processing system are generally
+  referred to as filters, there exit adders and multipliers too, however
+  those are somewhat more trivial. 
+
+
+  Looking into various source of the subject ..., it at firts seems that the
+  comb filter ...
+
+  It is noticably difficult to implement a arbitary algorith and obtain clear
+  plain text output which can be copied into a report document, hence a small
+  C program was written to prove that the above topologies of comb filters
+  differ very slightly. Code listing \ref{comb:test:init} demonstrates the
+  initialisation part of the program, while the listings \ref{comb:test:A}
+  and \ref{comb:test:B} are the functions which implement the algorithms of
+  each of the topologies under consideration\footnote{The entire program can
+  be view on \emph{GitHub}:
+  \URL{https://github.com/errordeveloper/maxmsp-misc-mu3014c/blob/master/tests/comb\_filters.c}}.
+  The output of the program is given in \ref{comb:test:output} and plotted in
+  figures \ref{comb:plot:A} and \ref{comb:plot:B}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
