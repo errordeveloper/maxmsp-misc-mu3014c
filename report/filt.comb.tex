@@ -12,10 +12,10 @@
  \psfblock          (-4,2)     {delA}   {$Z^{-m}$}
 
  \pscircleop        (-6,2)     {sumA}
- \dotnode           (-2,2)     {dotA}
+ \dotnode           (-3,2)     {dotA}
 
  \pscircleop  [operation=times](-5.5,0.5){gAd}
- \pssignal          (-5.5,-0.5)   {gA}     {$g$}
+ \pssignal          (-5.5,-0.5){gA}      {$g$}
  \ncline{>-}{gA}{gAd}
 
  %--- Link All Blocks:
@@ -25,7 +25,7 @@
  \ncline{->}{sumA}{delA}
  \ncline{->}{delA}{OA}
  \ncangle[angleA=90]{->}{dotA}{gAd}
- \ncangle[angleA=-180,angleB=-160]{->}{gAd}{sumA}
+ \ncangle[angleA=-180,angleB=-135]{->}{gAd}{sumA}
 
 \end{pspicture}
 \caption{\emph{Variant A of comb filter and it's impulse response ($m=1$, $g=0.65$)}} \label{comb:A}
@@ -43,13 +43,13 @@
  %--- Define Blocks:
  \pssignal          (-8,2)     {IB}     {$x_B[n]$}
  \pssignal          (-1,2)     {OB}     {$y_B[n]$}
- \psfblock          (-4,0.5)  {delB}   {$Z^{-m}$}
+ \psfblock          (-4,0.5)   {delB}   {$Z^{-m}$}
 
  \pscircleop        (-6,2)     {sumB}
- \dotnode           (-2,2)     {dotB}
+ \dotnode           (-3,2)     {dotB}
 
  \pscircleop  [operation=times](-5.5,0.5){gBd}
- \pssignal          (-5.5,-0.5){gB}    {$g$}
+ \pssignal          (-5.5,-0.5){gB}      {$g$}
  \ncline{>-}{gB}{gBd}
 
  %--- Link All Blocks:
@@ -57,8 +57,8 @@
 
  \ncline{->}{IB}{sumB}
  \ncline{->}{sumB}{OB}
- \ncangle[angleA=90]{->}{dotB}{delB}
- \ncline{->}{delB}{gBd} \ncangle[angleA=-180,angleB=-160]{->}{gBd}{sumB}
+ \ncangle{->}{dotB}{delB}
+ \ncline{->}{delB}{gBd} \ncangle[angleA=-180,angleB=-145]{->}{gBd}{sumB}
 
 \end{pspicture}
 \caption{\emph{Variant B of comb filter and it's impulse response ($m=1$, $g=0.65$)}} \label{comb:B}
@@ -74,26 +74,26 @@
 
  %--- Define Blocks:
  \pssignal          (-8,2)    {IB}     {$x_{AB}[n]$}
- \pssignal          (2,2)     {OB}     {$y_{AB}[n]$}
- \psfblock          (-4,0.5)  {delB}   {$Z^{-m}$}
- \psfblock          (0,2)     {delAB}  {$Z^{-m}$}
+ \pssignal          (1,2)     {OB}     {$y_{AB}[n]$}
+ \psfblock          (-2,0.5)  {delB}   {$Z^{-m}$}
+ \psfblock          (-5.5,2)  {delAB}  {$Z^{-m}$}
 
- \pscircleop        (-6,2)     {sumB}
- \dotnode           (-2,2)     {dotB}
+ \pscircleop        (-4,2)    {sumB}
+ \dotnode           (-1,2)    {dotB}
 
- \pscircleop  [operation=times](-5.5,0.5){gBd}
- \pssignal          (-5.5,-0.5){gB}    {$g$}
+ \pscircleop  [operation=times](-3.5,0.5){gBd}
+ \pssignal          (-3.5,-0.5){gB}      {$g$}
  \ncline{>-}{gB}{gBd}
 
  %--- Link All Blocks:
  \psset{style=Arrow,fillstyle=none}
 
- \ncline{->}{IB}{sumB}
- \ncline{->}{sumB}{delAB}
- \ncline{->}{delAB}{OB}
- \ncangle[angleA=90]{->}{dotB}{delB}
+ \ncline{->}{IB}{delAB}
+ \ncline{->}{sumB}{OB}
+ \ncline{->}{delAB}{sumB}
+ \ncangle{->}{dotB}{delB}
  \ncline{->}{delB}{gBd}
- \ncangle[angleA=-180,angleB=-160]{->}{gBd}{sumB}
+ \ncangle[angleA=-180,angleB=-145]{->}{gBd}{sumB}
 
 \end{pspicture}
 \caption{\emph{Variant B modified to produce direct form of A}} \label{comb:AB}
