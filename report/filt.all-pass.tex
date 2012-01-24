@@ -1,4 +1,4 @@
-\begin{figure} \begin{pspicture}[showgrid=true](-5,-1)(5,5)
+\begin{figure} \begin{pspicture}[showgrid=false](-5,-1)(5,5)
 
  \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
 
@@ -43,13 +43,13 @@
  \ncline{->}{sum1}{O}
 
  \ncangle[angleA=90]{->}{dot1}{g1d}
- \ncangle[angleB=-30]{->}{g2d}{sum1}
- \ncangle[angleA=-180,angleB=-160]{->}{g1d}{sum0}
+ \ncangle[angleB=-45]{->}{g2d}{sum1}
+ \ncangle[angleA=-180,angleB=-145]{->}{g1d}{sum0}
 
 
 \end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:A}\end{figure}
 
-\begin{figure} \begin{pspicture}[showgrid=true](-5,0)(5,6)
+\begin{figure} \begin{pspicture}[showgrid=false](-5,0)(5,6)
 
  \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
 
@@ -88,9 +88,9 @@
  \ncline{->}{sum1}{O}
 
  \ncangle[angleA=-90]{->}{dot1}{g0d}
- \ncangle[angleA=-180]{->}{dot0}{g1d}
- \ncangle[angleA=-180,angleB=160]{->}{g0d}{sum0}
- \ncangle[angleB=-30]{->}{g1d}{sum1}
+ \ncangle[angleA=-180,angleB=-90]{->}{g1d}{dot0}
+ \ncangle[angleA=-180,angleB=145]{->}{g0d}{sum0}
+ \ncangle[angleB=-45]{->}{g1d}{sum1}
 
 
 \end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:B}\end{figure}
