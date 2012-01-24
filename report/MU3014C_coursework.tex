@@ -13,6 +13,16 @@
 
 \usepackage{pst-sigsys}
 
+\usepackage{listings}
+
+\lstset{language=C,
+  basicstyle=\footnotesize,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  captionpos=b,
+  frame=single
+  }
 
 %\def\NOHREF{}
 
@@ -48,6 +58,12 @@
 
 \begin{document}
 \maketitle
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\listoffigures
+\endgroup
+\pagebreak
 
 \counterwithout{section}{chapter}
 
@@ -94,14 +110,17 @@
   we only ran one sample of music. The notion of delay time selections was random
   in that we just picked a bunch of numbers and there was no mathematical basis.
   We just wanted to prove it could be done."} Also John Stautner and Miller
-  Puckette in the article "Designing Multi-Channel Reverberators" (Computer Music
+  Puckette in their article "Designing Multi-Channel Reverberators" (Computer Music
   Journal, 1982) \cite{puckette1982reverb} point out that \emph{"\dots no attempt
   has been made to imitate the ambience of an existing room or concert hall,
   the methods described herein may lead to such applications when they are
   combined with a consideration of the perceptual importance of attributes of
-  the soundfield in a real room."}. However, the later papers by William Gardner
+  the soundfield in a real room."}. Although, the later papers by William Gardner
   \cite{gardner1992virtual, gardner1998algorithms} suggest formulas to calculate
-  coefficients.
+  coefficients, the use of reverberation is not purelly to imitate a specific
+  type of room or even an existing room somewhere - it is one of the greates tools
+  that musicians can utilies for their artistic expression.
+
 
 
   \subsection{Brief Overview of History of Reverb Topologies}
@@ -109,8 +128,9 @@
   Manfred Schroeder had been a pioneer in artificial reverberator design, he
   worked at Bell Laboratories since mid-1950s and published an number of papers
   in the following two decades \cite{dattorro1997effect}. The original
-  Schroeder's topology consisted of 4 parallel comb filters generating early
-  echoes and 2 all-pass filters all in series \cite{gardner1992virtual}.
+  Schroeder's topology \cite{schroeder1962natural} consisted of 4 parallel comb
+  filters generating early echoes and 2 all-pass filters all in series
+  \cite{gardner1992virtual}.
   Moorer suggests that Schroeder's design have exhibited fluttering decay
   and poor echo density \cite{moorer1979about}. The fluttering (sometimes also
   called "metallic ringing") can be observed in response to impulsive sounds
@@ -119,24 +139,24 @@
   reverberation levels \cite{gardner1998algorithms}. One of the major disadvantages
   is that it \emph{"\dots does not provide a frequency dependent reverberation time"}.
   Moorer \cite{moorer1979about} has modified the comb filter block by adding
-  two extra comb filters and a one-pole low-pass filter in the feed-back loop
-  of each of the comb filters. The low-pass in feed-back was intended to
+  two extra comb filters and a one-pole low-pass filter in the feedback loop
+  of each of the comb filters. The low-pass in feedback was intended to
   dump the higher frequencies similarly to how those are absorbed in air.
   Moorer's technique has helped to reduce the unnaturally sounding flutter,
   however it has not eliminated it entirely. There had been a great amount of
   research in this area, where the two biggest problems had been - eliminate
   unnatural colouration and achieve the highest echo density. It should be
-  noted that most of the later topologies had been designed by modifying the
+  noted that most of the later topologies were designed by modifying the
   feedback path. For example, Puckette and Stautner \cite{puckette1982reverb}
   have achieved much higher echo density in their multi-channel system by
   using a rotation matrix in the feedback loop. Miller Puckette also presents
   this as an example\footnote{It had been a trivial task to implement Puckette's
   reverb in Max and it can be found in the project repository, stored as \texttt{`%
-  \href{https://github.com/errordeveloper/maxmsp-misc-mu3014c/blob/master/patchers/reverb.matrix-rotation.maxpat}{reverb.matrix-rotation.maxpat}`}} in his book "Theory and Technique of Electronic Music"%
-  \cite{puckette2007theory}.
+  \href{https://github.com/errordeveloper/maxmsp-misc-mu3014c/blob/master/patchers/reverb.matrix-rotation.maxpat}{reverb.matrix-rotation.maxpat}`}} in his book "The Theory and Technique of Electronic
+  Music"\cite{puckette2007theory}.
   Gardner \cite{gardner1998algorithms} also highlighted a number of other
-  various feed-back loop improvements as well as the work of Jean-Marc Jot in
-  early 1990s, who introduced time-varying feed-back correcting algorithm,
+  various feedback loop improvements as well as the work of Jean-Marc Jot in
+  early 1990s, who introduced time-varying feedback correcting algorithm,
   which deserves a separate case study and the author of this report certainly
   desires to do so. However, the subject set herein is the earlies reverberator,
   one which Manfred Schroeder has invented in early 1960s.
@@ -144,36 +164,96 @@
 
 \section{Implementation}
 
-
   \subsection{Building Blocks}
+  As mentioned above, the Schroeder's reverb contained 4 parallel comb filters
+  in series with 2 all-pass filters, these are also often referred to as the
+  \emph{unit reverberators}.
 
-  The building blocks of a reverberation network are also called unit
-  reverberators and most commonly are at least  ...
+  \subsubsection{Comb Filter}
+  The comb filter has a few different uses in audio signal processing (e.g.
+  octave doubling \cite{puckette2007theory}) and it seems at first as just
+  a simple digital filter. However, instead of delay line being of 1 or 2
+  samples in length, it uses a significantly larger length of delay, hence
+  exhibits a number of effects, one of which finds the use in reverberation
+  network designs.
 
-  The building blocks of reverberators are filters, however these are slightly
-  different from filters which are used for ...
-  OR:
-
-  The building blocks of almost any signal processing system are generally
-  referred to as filters, there exit adders and multipliers too, however
-  those are somewhat more trivial. 
-
-
-  Looking into various source of the subject ..., it at firts seems that the
-  comb filter ...
-
-  It is noticably difficult to implement a arbitary algorith and obtain clear
-  plain text output which can be copied into a report document, hence a small
-  C program was written to prove that the above topologies of comb filters
-  differ very slightly. Code listing \ref{comb:test:init} demonstrates the
-  initialisation part of the program, while the listings \ref{comb:test:A}
-  and \ref{comb:test:B} are the functions which implement the algorithms of
-  each of the topologies under consideration\footnote{The entire program can
-  be view on \emph{GitHub}:
+  Two variants of comb filter design had been encountered in different sources%
+  \footnote{For example, Miller Puckette in "Theory and Technique of Electronic
+  Music" \cite{puckette2007theory} on page 185 in figure 7.7 gives topology $B$,
+  though in the CMJ article \cite{puckette1982reverb} he clearly shows topology
+  $A$. While William Gardner \cite{gardner1998algorithms, gardner1992virtual}
+  and James Moorer also use $A$, Curtis Roads in "The Computer Music Tutorial"%
+  \cite{roads1996computer} on page 479 in fugure 11.79 shows $B$.},
+  both appear a little different and it was not very clear at first
+  what exactly the difference is (see figures \ref{comb:A} and \ref{comb:B}).
+  It is noticeably difficult to implement an arbitrary algorithm using \emph{Max}
+  and obtain plain text output which could be copied into a report document,
+  hence a small C program was written to simulate impulse response of the two
+  topologies and prove that the filters differ very slightly. Code listing
+  \ref{comb:test} contains just the functions which implement the algorithms of
+  each of the topologies under consideration\footnote{The entire program can be
+  view on \emph{GitHub}:
   \URL{https://github.com/errordeveloper/maxmsp-misc-mu3014c/blob/master/tests/comb\_filters.c}}.
-  The output of the program is given in \ref{comb:test:output} and plotted in
-  figures \ref{comb:plot:A} and \ref{comb:plot:B}.
 
+  With $g=0.65$ the following output had been obtain for the first 6 samples:
+  \begin{verbatim}
+  y = < 0.000000 1.000000 0.650000 0.422500 0.274625 0.178506 >
+  y = < 1.000000 0.650000 0.422500 0.274625 0.178506 0.116029 >
+  \end{verbatim}
+  Hereby it is clear that two of the comb filter variants differ in regards to
+  the first sample of the impulse response, the variant $A$ is deduced version of
+  $B$ if it have had an additional delay line (as shown in figure \ref{comb:AB}).
+  The benefit of using the variant $A$ in reverberator design is due to the fact
+  that a number of comb filters will be placed in parallel and will result in an
+  undesired effect as show below in terms of difference equations for two comb
+  filter with the same input $x_A[n]$ connected in parallel.
+
+  \[ y_{B_1}[n] = x_B[n] + gy_{B_1}[n-m_1] \]
+  \[ y_{B_2}[n] = x_B[n] + gy_{B_2}[n-m_2] \]
+  \[ y_{B_1}[n] + y_{B_2}[n] = 2x_{B}[n] + gy_{B_1}[n-m_1] + gy_{B_2}[n-m_2] \]
+
+  In other terms this means that using topology B in a reverb will result in
+  undesired contribution to the amount of "dry" signal in the output.
+
+  \vspace{2em}
+
+\lstset{caption={Extract of the test program},label=comb:test}
+\begin{lstlisting}
+void  comb_test_topology_a
+ (float y[], float x[], float d, float g) {
+
+  printf("y = < ");
+  for (int i = 0; i < SIZE; i++) {
+  
+    y[i] = d;
+    d = x[i];
+    x[i+1] += d*g;
+  
+    printf("%f ", y[i]);
+  
+  }
+  printf(">\n");
+}
+
+void  comb_test_topology_b
+ (float y[], float x[], float d, float g) {
+
+   printf("y = < ");
+   for (int i = 0; i < SIZE; i++) {
+
+     d = y[i] = x[i] + g*d;
+     printf("%f ", y[i]);
+
+   }
+   printf(">\n");
+}
+
+\end{lstlisting}
+
+
+  \include{filt.comb}
+
+  \subsubsection{All-pass Filter}
   \include{filt.all-pass}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

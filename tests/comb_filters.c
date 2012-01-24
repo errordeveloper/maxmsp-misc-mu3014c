@@ -5,8 +5,8 @@
   printf("\n"__VA_ARGS__)
 #endif
 
-#define SIZE      8
-#define GAIN    0.5
+#define SIZE      6
+#define GAIN    0.65
 
 void  comb_test_topology_a (float y[], float x[], 
     float d, float g) {
