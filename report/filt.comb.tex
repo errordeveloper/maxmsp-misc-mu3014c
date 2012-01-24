@@ -1,0 +1,100 @@
+\begin{figure}
+%-- A
+\begin{pspicture}[showgrid=false](-9,-1)(6,3)
+
+ \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
+
+ \psstem[style=Stem,stemtag]{0.000000,1.000000,0.650000,0.422500,0.274625,0.178506}
+
+ %--- Define Blocks:
+ \pssignal          (-8,2)     {IA}     {$x_A[n]$}
+ \pssignal          (-1,2)     {OA}     {$y_A[n]$}
+ \psfblock          (-4,2)     {delA}   {$Z^{-m}$}
+
+ \pscircleop        (-6,2)     {sumA}
+ \dotnode           (-2,2)     {dotA}
+
+ \pscircleop  [operation=times](-5.5,0.5){gAd}
+ \pssignal          (-5.5,-0.5)   {gA}     {$g$}
+ \ncline{>-}{gA}{gAd}
+
+ %--- Link All Blocks:
+ \psset{style=Arrow,fillstyle=none}
+
+ \ncline{->}{IA}{sumA}
+ \ncline{->}{sumA}{delA}
+ \ncline{->}{delA}{OA}
+ \ncangle[angleA=90]{->}{dotA}{gAd}
+ \ncangle[angleA=-180,angleB=-160]{->}{gAd}{sumA}
+
+\end{pspicture}
+\caption{\emph{Variant A of comb filter and it's impulse response ($m=1$, $g=0.65$)}} \label{comb:A}
+
+\end{figure}
+
+\begin{figure}
+%-- B
+\begin{pspicture}[showgrid=false](-9,-1)(6,3)
+
+ \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
+
+ \psstem[style=Stem,stemtag]{1.000000,0.650000,0.422500,0.274625,0.178506,0.116029}
+ 
+ %--- Define Blocks:
+ \pssignal          (-8,2)     {IB}     {$x_B[n]$}
+ \pssignal          (-1,2)     {OB}     {$y_B[n]$}
+ \psfblock          (-4,0.5)  {delB}   {$Z^{-m}$}
+
+ \pscircleop        (-6,2)     {sumB}
+ \dotnode           (-2,2)     {dotB}
+
+ \pscircleop  [operation=times](-5.5,0.5){gBd}
+ \pssignal          (-5.5,-0.5){gB}    {$g$}
+ \ncline{>-}{gB}{gBd}
+
+ %--- Link All Blocks:
+ \psset{style=Arrow,fillstyle=none}
+
+ \ncline{->}{IB}{sumB}
+ \ncline{->}{sumB}{OB}
+ \ncangle[angleA=90]{->}{dotB}{delB}
+ \ncline{->}{delB}{gBd} \ncangle[angleA=-180,angleB=-160]{->}{gBd}{sumB}
+
+\end{pspicture}
+\caption{\emph{Variant B of comb filter and it's impulse response ($m=1$, $g=0.65$)}} \label{comb:B}
+
+\end{figure}
+
+
+\begin{figure}
+%-- B
+\begin{pspicture}[showgrid=false](-9,-1)(6,3)
+
+ \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
+
+ %--- Define Blocks:
+ \pssignal          (-8,2)    {IB}     {$x_{AB}[n]$}
+ \pssignal          (2,2)     {OB}     {$y_{AB}[n]$}
+ \psfblock          (-4,0.5)  {delB}   {$Z^{-m}$}
+ \psfblock          (0,2)     {delAB}  {$Z^{-m}$}
+
+ \pscircleop        (-6,2)     {sumB}
+ \dotnode           (-2,2)     {dotB}
+
+ \pscircleop  [operation=times](-5.5,0.5){gBd}
+ \pssignal          (-5.5,-0.5){gB}    {$g$}
+ \ncline{>-}{gB}{gBd}
+
+ %--- Link All Blocks:
+ \psset{style=Arrow,fillstyle=none}
+
+ \ncline{->}{IB}{sumB}
+ \ncline{->}{sumB}{delAB}
+ \ncline{->}{delAB}{OB}
+ \ncangle[angleA=90]{->}{dotB}{delB}
+ \ncline{->}{delB}{gBd}
+ \ncangle[angleA=-180,angleB=-160]{->}{gBd}{sumB}
+
+\end{pspicture}
+\caption{\emph{Variant B modified to produce direct form of A}} \label{comb:AB}
+\end{figure}
