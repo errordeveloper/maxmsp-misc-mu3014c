@@ -1,4 +1,4 @@
-\begin{figure} \begin{pspicture}[showgrid=false](-5,-2)(5,5)
+\begin{figure} \begin{pspicture}[showgrid=true](-5,-1)(5,5)
 
  \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
 
@@ -47,4 +47,50 @@
  \ncangle[angleA=-180,angleB=-160]{->}{g1d}{sum0}
 
 
-\end{pspicture} \caption{\emph {All-pass Filter}} \label{filt.all-pass}\end{figure}
+\end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:A}\end{figure}
+
+\begin{figure} \begin{pspicture}[showgrid=true](-5,0)(5,6)
+
+ \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
+
+
+ %--- Define Blocks:
+
+ \pssignal          (-4,3.5)    {I}     {$x[n]$}
+ \pssignal          (4,3.5)     {O}     {$y[n]$}
+
+ \pscircleop        (-2.5,3.5)    {sum0}
+ \dotnode           (-1.5,3.5)    {dot0}
+
+ \psfblock          (0,3.5)  {del}   {$Z^{-m}$}
+
+ \pscircleop        (2.5,3.5)     {sum1}
+ \dotnode           (1.5,3.5)     {dot1}
+
+
+
+ \pscircleop  [operation=times](0.5,5){g0d}
+ \pssignal          (0.5,6)    {g0}    {$g$}
+ \ncline{>-}{g0}{g0d}
+
+ \pscircleop  [operation=times](-0.5,2){g1d}
+ \pssignal          (-0.5,1)    {g1}    {$-g$}
+ \ncline{>-}{g1}{g1d}
+
+
+ %--- Link All Blocks:
+
+ \psset{style=Arrow,fillstyle=none}
+
+ \ncline{->}{I}{sum0}
+ \ncline{->}{sum0}{del}
+ \ncline{->}{del}{sum1}
+ \ncline{->}{sum1}{O}
+
+ \ncangle[angleA=-90]{->}{dot1}{g0d}
+ \ncangle[angleA=-180]{->}{dot0}{g1d}
+ \ncangle[angleA=-180,angleB=160]{->}{g0d}{sum0}
+ \ncangle[angleB=-30]{->}{g1d}{sum1}
+
+
+\end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:B}\end{figure}
