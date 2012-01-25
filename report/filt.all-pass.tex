@@ -1,4 +1,4 @@
-\begin{figure} \begin{pspicture}[showgrid=true](-5,-1)(5,5)
+\begin{figure} \begin{pspicture}[showgrid=false](-5,-1)(5,5)
 
  \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
 
@@ -49,6 +49,16 @@
 
 \end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:A}\end{figure}
 
+
+\begin{figure} \begin{pspicture}[showgrid=false](-1,-1)(11,1)
+
+ \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
+
+ \psaxeslabels{->}(0,0)(0,0)(10,0){$x$}{}
+ \psstem[style=Stem,stemtag]{-0.500000,0.500000,0.250000,0.125000,0.062500,0.031250,0.015625,0.007812,0.003906,0.001953}
+ ￼￼￼￼￼￼￼￼￼
+\end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:B}\end{figure}
+
 \begin{figure} \begin{pspicture}[showgrid=false](-5,0)(5,6)
 
  \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
@@ -88,10 +98,19 @@
  \ncline{->}{sum1}{O}
 
  \ncangle[angleA=-90]{->}{dot1}{g0d}
- \ncangle[angleA=-180,angleB=-90]{->}{g1d}{dot0}
+ \ncangle[angleA=-180,angleB=-90]{<-}{g1d}{dot0}
  %\ncangle[angleA=-180,angleB=-90]{<-}{g1d}{dot0}
  \ncangle[angleA=-180,angleB=145]{->}{g0d}{sum0}
  \ncangle[angleB=-45]{->}{g1d}{sum1}
 
 
+\end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:B}\end{figure}
+
+\begin{figure} \begin{pspicture}[showgrid=false](-1,-1)(11,1)
+
+ \psset{style=RoundCorners,fillstyle=solid,fillcolor=green!14,gratioWh=1.25}
+
+ \psaxeslabels{->}(0,0)(0,0)(10,0){$x$}{}
+ \psstem[style=Stem,stemtag]{-0.500000,0.750000,0.375000,0.187500,0.093750,0.046875,0.023438,0.011719,0.005859,0.002930}
+ ￼￼￼￼￼￼￼￼￼
 \end{pspicture} \caption{\emph {All-pass Filter}} \label{allpass:B}\end{figure}
