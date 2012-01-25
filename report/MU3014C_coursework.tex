@@ -208,12 +208,26 @@
   undesired effect as show below in terms of difference equations for two comb
   filter with the same input $x_A[n]$ connected in parallel.
 
+  The difference equation for variant $B$ (fig. \ref{comb:B}) of the comb filter
+  can be written:\begin{equation}
+    y_B[n] = x_B[n] + gy_B[n-m]
+  \end{equation}
+  For any two different values $m_1$ and $m_2$, and provided that the input
+  $x_B[n]$ is a common node, as well as output $y_{B_1}[n]$ and $y_{B_2}[n]$
+  are summed in a common node, then the following equation applies:
+
   \[ y_{B_1}[n] = x_B[n] + gy_{B_1}[n-m_1] \]
   \[ y_{B_2}[n] = x_B[n] + gy_{B_2}[n-m_2] \]
   \[ y_{B_1}[n] + y_{B_2}[n] = 2x_{B}[n] + gy_{B_1}[n-m_1] + gy_{B_2}[n-m_2] \]
 
-  In other terms this means that using topology B in a reverb will result in
-  undesired contribution to the amount of "dry" signal in the output.
+  Hence, the output of two parallel comb filters of topology $B$ will contain
+  double amplitude of $x_B[n]$, which, in other terms, means that using topology
+  $B$ in a reverb will result in undesired contribution to the amount of "dry"
+  signal in the output.
+
+  The figure \ref{comb:AB} has been drawn based on empirical results of a
+  simulation using the code listed below, however additional proof seems
+  necessary.
 
   \vspace{2em}
 
@@ -230,7 +244,6 @@ void  comb_test_topology_a
     x[i+1] += d*g;
   
     printf("%f ", y[i]);
-  
   }
   printf(">\n");
 }
@@ -243,17 +256,52 @@ void  comb_test_topology_b
 
      d = y[i] = x[i] + g*d;
      printf("%f ", y[i]);
-
    }
    printf(">\n");
 }
-
 \end{lstlisting}
 
 
   \include{filt.comb}
 
+  Gardner \cite{gardner1998algorithms} gives the following transfer function
+  for the comb filter (variant $A$):\begin{equation}
+    H_A(z)={{z^{-m}}\over{1-gz^{-m}}}
+  \end{equation}
+  Given the transfer function, the difference equation can be written in
+  $Z$-domain:\begin{eqnarray}
+    Y_A(z)(1-gz^{-m}) &=& X_A(z)(z^{-m})\\
+    Y_A(z) &=& X_A(z)(z^{-m}) + Y_A(z)(gz^{-m})
+  \end{eqnarray}
+  Hence, the time domain equation can be derived:
+  \begin{equation}
+    y_A[n] = x_A[n-m] + y_A[n-m]
+  \end{equation}
+  The equation $5$ clearly represents the same system which had been defined
+  by observation of previous simulation using the C program above.
+  The comb filter has it's name because the magnitude response graph, which is
+  of comb shape. That is why Schroeder's reverb has the "metallic" sound, it
+  is due to additional harmonics introduced by the comb filters. It is also
+  important to note that the comb filter is an IIR system and it has multiple
+  poles, which are spread harmonically at distance proportional to $m$ modulus
+  proportional to $g$. Further analysis of frequency response and it's impact
+  on the audible qualities of Schroeder's reverb are outside the scope of this
+  report.
+
   \subsubsection{All-pass Filter}
+  By definition, all-pass filter may have any topology provided that it's
+  magnitude response is flat and only it's phase response would be of rather
+  more complex nature, though no definition had been made to what the phase
+  response should be. Effectively, all-pass filter still does affect the
+  audible signal, although only an experienced listener could differ the
+  output of an all-pass system from a "dry" input. The task of herein is to
+  implement Schroeder's reverberator and it's building blocks in \emph{Max},
+  hence only limited number of statements will be made. That is said
+  considering how diverse is the field of all-pass filter design, since no
+  formal network topology definition exists.
+
+  Firstly, looking at Gardner's work \cite{gardner1998algorithms, gardner1992virtual}
+
   \include{filt.all-pass}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
