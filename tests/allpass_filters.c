@@ -6,51 +6,36 @@
 #endif
 
 #define SIZE      10
-#define GAIN    0.65
+#define GAIN      0.5
 
-void  comb_test_topology_a (float y[], float x[], 
+void  allpass_test_topology_a (float y[], float x[], 
     float d, float g) {
 
   printf("y = < ");
   for (int i = 0; i < SIZE; i++) {
   
-    y[i] = d;
-    d = x[i];
-    x[i+1] += d*g;
-  
-    printf("%f,", y[i]);
-  
-  }
-  printf(">\n");
-}
-
-void  comb_test_topology_ab (float y[], float x[], 
-    float d, float g) {
-
-  printf("y = < ");
-  for (int i = 0; i < SIZE; i++) {
-  
-    if (i == 0) {
-      y[i] = 0;
+    if (i == 0) { 
+      y[i] = -g*x[i];
     } else {
-      y[i] = x[i-1]+g*y[i-1];
+      y[i] = -g*x[i]+(1-g*g)*x[i-1]+g*y[i-1];
     }
-  
     printf("%f,", y[i]);
-  
   }
   printf(">\n");
 }
 
-void  comb_test_topology_b (float y[], float x[],
+void  allpass_test_topology_b (float y[], float x[],
     float d, float g) {
 
    printf("y = < ");
    for (int i = 0; i < SIZE; i++) {
 
-     d = y[i] = x[i] + g*d;
+     if (i == 0) { 
+       y[i] = -g*x[i];
+     } else {
+       y[i] = -g*x[i]+x[i-1]+g*y[i-1];
+     }
      printf("%f,", y[i]);
-
    }
    printf(">\n");
 }
@@ -64,13 +49,10 @@ int main () {
     x[i] = y[i] = 0.0; }; x[0] = 1; d = 0;
 
   clear();
-  comb_test_topology_a (y, x, d, g);
+  allpass_test_topology_a (y, x, d, g);
 
   clear();
-  comb_test_topology_b (y, x, d, g);
-
-  clear();
-  comb_test_topology_ab (y, x, d, g);
+  allpass_test_topology_b (y, x, d, g);
 
   return 0;
 
