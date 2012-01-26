@@ -11,7 +11,7 @@
 void  comb_test_topology_a (float y[], float x[], 
     float d, float g) {
 
-  printf("y = < ");
+  printf("comb_var_a = < ");
   for (int i = 0; i < SIZE; i++) {
   
     y[i] = d;
@@ -27,7 +27,7 @@ void  comb_test_topology_a (float y[], float x[],
 void  comb_test_topology_ab (float y[], float x[], 
     float d, float g) {
 
-  printf("y = < ");
+  printf("comb_var_ab = < ");
   for (int i = 0; i < SIZE; i++) {
   
     if (i == 0) {
@@ -45,7 +45,7 @@ void  comb_test_topology_ab (float y[], float x[],
 void  comb_test_topology_b (float y[], float x[],
     float d, float g) {
 
-   printf("y = < ");
+   printf("comb_var_b = < ");
    for (int i = 0; i < SIZE; i++) {
 
      d = y[i] = x[i] + g*d;
