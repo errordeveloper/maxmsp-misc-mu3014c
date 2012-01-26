@@ -197,8 +197,8 @@
 
   With $g=0.65$ the following output had been obtain for the first 6 samples:
   \begin{verbatim}
-  y = < 0.000000 1.000000 0.650000 0.422500 0.274625 0.178506 >
-  y = < 1.000000 0.650000 0.422500 0.274625 0.178506 0.116029 >
+  comb_var_a = < 0.000000 1.000000 0.650000 0.422500 0.274625 0.178506 >
+  comb_var_b = < 1.000000 0.650000 0.422500 0.274625 0.178506 0.116029 >
   \end{verbatim}
   Hereby it is clear that two of the comb filter variants differ in regards to
   the first sample of the impulse response, the variant $A$ is deduced version of
@@ -231,12 +231,12 @@
 
   \vspace{2em}
 
-\lstset{caption={Extract of the test program},label=comb:test}
+\lstset{caption={Extract of the comb filter test program},label=comb:test}
 \begin{lstlisting}
 void  comb_test_topology_a
  (float y[], float x[], float d, float g) {
 
-  printf("y = < ");
+  printf("comb_var_a = < ");
   for (int i = 0; i < SIZE; i++) {
   
     y[i] = d;
@@ -251,7 +251,7 @@ void  comb_test_topology_a
 void  comb_test_topology_b
  (float y[], float x[], float d, float g) {
 
-   printf("y = < ");
+   printf("comb_var_b = < ");
    for (int i = 0; i < SIZE; i++) {
 
      d = y[i] = x[i] + g*d;
@@ -261,24 +261,23 @@ void  comb_test_topology_b
 }
 \end{lstlisting}
 
-
   \include{filt.comb}
 
   Gardner \cite{gardner1998algorithms} gives the following transfer function
-  for the comb filter (variant $A$):\begin{equation}
+  for the comb filter (variant $A$):\begin{equation}\label{eq:cHAz}
     H_A(z)={{z^{-m}}\over{1-gz^{-m}}}
   \end{equation}
-  Given the transfer function, the difference equation can be written in
-  $Z$-domain:\begin{eqnarray}
+  Given the transfer function (\ref{eq:cHAz}), the difference equation can be
+  written in $Z$-domain:\begin{eqnarray}
     Y_A(z)(1-gz^{-m}) &=& X_A(z)(z^{-m})\\
     Y_A(z) &=& X_A(z)(z^{-m}) + Y_A(z)(gz^{-m})
   \end{eqnarray}
-  Hence, the time domain equation can be derived:
-  \begin{equation}
+  Hence, the time domain difference equation can be derived:
+  \begin{equation}\label{eq:cyAn}
     y_A[n] = x_A[n-m] + y_A[n-m]
   \end{equation}
-  The equation $5$ clearly represents the same system which had been defined
-  by observation of previous simulation using the C program above.
+  The equation (\ref{eq:cyAn}) clearly represents the same system which had been
+  defined by observation of previous simulation using the C program above.
   The comb filter has it's name because the magnitude response graph, which is
   of comb shape. That is why Schroeder's reverb has the "metallic" sound, it
   is due to additional harmonics introduced by the comb filters. It is also
@@ -289,20 +288,108 @@ void  comb_test_topology_b
   report.
 
   \subsubsection{All-pass Filter}
-  By definition, all-pass filter may have any topology provided that it's
-  magnitude response is flat and only it's phase response would be of rather
-  more complex nature, though no definition had been made to what the phase
-  response should be. Effectively, all-pass filter still does affect the
-  audible signal, although only an experienced listener could differ the
-  output of an all-pass system from a "dry" input. The task of herein is to
-  implement Schroeder's reverberator and it's building blocks in \emph{Max},
-  hence only limited number of statements will be made. That is said
-  considering how diverse is the field of all-pass filter design, since no
-  formal network topology definition exists.
+  As defined my Julius Smith in "Introduction to Digital Filters: With Audio
+  Applications" \cite{smith2007introduction}, \emph{"A linear, time-invariant
+  filter \dots\ is said to be lossless if it preserves signal energy for every
+  input signal"}, which generally implies \begin{equation}|label{eq:allpass}
+    H(e^{j\omega})|=1\,\,\forall\omega \end{equation}
 
-  Firstly, looking at Gardner's work \cite{gardner1998algorithms, gardner1992virtual}
+  Therefore, by definition, all-pass filter may have any topology provided
+  that it's magnitude response is flat and only it's phase response would
+  be of rather more complex nature, though no definition had been made to
+  what the phase response should be. Effectively, all-pass filter still
+  does affect the audible signal, although only an experienced listener
+  could differ the output of an all-pass system from a "dry" input. The
+  task of herein is to implement Schroeder's reverberator and it's building
+  blocks in \emph{Max}, hence only limited number of statements will be made.
+  That is said considering how diverse is the field of all-pass filter design,
+  since no formal network topology definition exists.
+
+  Looking at Gardner's work \cite{gardner1998algorithms, gardner1992virtual},
+  again there appear to be two slightly different implementation of all-pass
+  filter, both of which are shown in figures \ref{allpass:A} and \ref{allpass:B}.
+  Both of these were also encountered in other literature, including Roads
+  \cite{roads1996computer} and Puckette \cite{puckette2007theory}. To compare
+  these, it should be sufficient to write down the difference equation for
+  each of the variants, using $A$ and $B$ as subscripts for clarity.
+
+  \begin{equation}\label{eq:ayAn}
+    y_A[n] = -gx_A[n] +(1-g^2)x_A[n-m] +gy_A[n-m]
+  \end{equation}
+  \begin{equation}\label{eq:ayBn}
+    y_B[n] = -gx_B[n] +x_B[n-m] +gy_B[n-m]
+  \end{equation}
+
+  A very similar C program\footnote{Full source code is also available on \emph{GitHub}:
+  \URL{https://github.com/errordeveloper/maxmsp-misc-mu3014c/blob/master/tests/allpass\_filters.c}}
+  (lis. \ref{allpass:test}) has been written to simulate the behaviour for two all-pass
+  filter implementations (fig. \ref{allpass:A} \& \ref{allpass:B}). Unlike the program
+  in listing \ref{comb:test}, this was rather much simpler to implement since
+  the difference equation was known already\footnote{It was somewhat more
+  difficult to write the equation for the comb filters, since the diagrams
+  look very different to a common $n$-pole/$n$-zero filter.}. It helped,
+  however, to obtain the impulse response for each of the variants which is
+  show below for the first 6 sample with $g=1$ and $m=1$. It should be also
+  noted that the value of $m$ will affect the frequency response of the filter
+  and it's impulse response, nevertheless setting $m=1$ in this simulation
+  does give a good picture where the difference between two topologies can be
+  observer. Namely, the data shown below confirms that the extra multiply node
+  on the diagram only affect the decay curve of the impulse response.
+  \begin{verbatim}
+  allpass_var_a = < -0.500000 0.500000 0.250000 0.125000 0.062500 0.031250 >
+  allpass_var_b = < -0.500000 0.750000 0.375000 0.187500 0.093750 0.046875 >
+  \end{verbatim}
+
+\lstset{caption={Extract of the all-pass filter test program},label=allpass:test}
+\begin{lstlisting}
+void  allpass_test_topology_a
+ (float y[], float x[], float d, float g) {
+
+  printf("allpass_var_a = < ");
+  for (int i = 0; i < SIZE; i++) {
+  
+    if (i == 0) { 
+      y[i] = -g*x[i];
+    } else {
+      y[i] = -g*x[i]+(1-g*g)*x[i-1]+g*y[i-1];
+    }
+    printf("%f ", y[i]);
+  }
+  printf(">\n");
+}
+
+void  allpass_test_topology_b
+ (float y[], float x[], float d, float g) {
+   printf("allpass_var_b = < ");
+   for (int i = 0; i < SIZE; i++) {
+
+     if (i == 0) { 
+       y[i] = -g*x[i];
+     } else {
+       y[i] = -g*x[i]+x[i-1]+g*y[i-1];
+     }
+     printf("%f ", y[i]);
+   }
+   printf(">\n");
+}
+\end{lstlisting}
+\vspace{2em}
+As it has been said already, the objection of this report is rather more
+practical, hence there is not detailed derivation of $H(z)$ and proof of
+that equation \ref{eq:allpass} is true for the above all-pass filters,
+in fact that would be rather redundant.
+
+\subsection{Max/MSP Patches}
+
+The source code repository of this project (see seciton 1.1), contains
+several files which are the results of some of the early experiments.
+Amongst miscellaneous, there is a implementation of Puckette \& Stautner
+rotation-matrix stereo reverb (filename \emph{\texttt{`reverb.matrix-rotation.maxpat`}})
+as well as some more primitive filters (e.g. \emph{\texttt{`filt.1st-order\~.maxpat`}} and
+\emph{\texttt{`filt.2nd-order\~.maxpat`}}).
 
   \include{filt.all-pass}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
