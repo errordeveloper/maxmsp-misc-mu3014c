@@ -288,19 +288,19 @@ void  comb_test_topology_b
   report.
 
   \subsubsection{All-pass Filter}
-  As defined my Julius Smith in "Introduction to Digital Filters: With Audio
+  As defined by Julius Smith in "Introduction to Digital Filters: With Audio
   Applications" \cite{smith2007introduction}, \emph{"A linear, time-invariant
   filter \dots\ is said to be lossless if it preserves signal energy for every
-  input signal"}, which generally implies \begin{equation}|label{eq:allpass}
+  input signal"}, which generally implies \begin{equation} \label{eq:allpass}
     H(e^{j\omega})|=1\,\,\forall\omega \end{equation}
 
   Therefore, by definition, all-pass filter may have any topology provided
-  that it's magnitude response is flat and only it's phase response would
+  that it's magnitude response is lossless and only it's phase response would
   be of rather more complex nature, though no definition had been made to
   what the phase response should be. Effectively, all-pass filter still
   does affect the audible signal, although only an experienced listener
   could differ the output of an all-pass system from a "dry" input. The
-  task of herein is to implement Schroeder's reverberator and it's building
+  task herein is to implement Schroeder's reverberator and it's building
   blocks in \emph{Max}, hence only limited number of statements will be made.
   That is said considering how diverse is the field of all-pass filter design,
   since no formal network topology definition exists.
@@ -329,7 +329,7 @@ void  comb_test_topology_b
   difficult to write the equation for the comb filters, since the diagrams
   look very different to a common $n$-pole/$n$-zero filter.}. It helped,
   however, to obtain the impulse response for each of the variants which is
-  show below for the first 6 sample with $g=1$ and $m=1$. It should be also
+  show below for the first 6 sample with $g=0.5$ and $m=1$. It should be also
   noted that the value of $m$ will affect the frequency response of the filter
   and it's impulse response, nevertheless setting $m=1$ in this simulation
   does give a good picture where the difference between two topologies can be
@@ -381,14 +381,34 @@ in fact that would be rather redundant.
 
 \subsection{Max/MSP Patches}
 
-The source code repository of this project (see seciton 1.1), contains
+The implementation of Schroeder's reverberator requires two major components -
+a comb and an all-pass filter. \emph{Max/MSP} contains built-in object for
+these two types of filters, however the task of this project had been to
+implement the reverberator utilising only the most primitive of instances of
+built-in objects.
+
+The source code repository of this project (see seciton 1.1) also contains
 several files which are the results of some of the early experiments.
 Amongst miscellaneous, there is a implementation of Puckette \& Stautner
 rotation-matrix stereo reverb (filename \emph{\texttt{`reverb.matrix-rotation.maxpat`}})
-as well as some more primitive filters (e.g. \emph{\texttt{`filt.1st-order\~.maxpat`}} and
-\emph{\texttt{`filt.2nd-order\~.maxpat`}}).
+as well as some more primitive filters (e.g. \emph{\texttt{`filt.1st-order\~{}.maxpat`}}
+and \emph{\texttt{`filt.2nd-order\~{}.maxpat`}}).
 
-  \include{filt.all-pass}
+\pagebreak
+\include{filt.all-pass}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{images/filt.comb.png}
+  \caption{\emph{Comb filter implemented in Max/MSP}}
+  \label{max:comb}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{images/filt.allpass.png}
+  \caption{\emph{All-pass filter implemented in Max/MSP}}
+  \label{max:comb}
+\end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
