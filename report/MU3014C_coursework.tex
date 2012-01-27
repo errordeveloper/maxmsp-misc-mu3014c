@@ -375,19 +375,44 @@ void  allpass_test_topology_b
 \end{lstlisting}
 \vspace{2em}
 As it has been said already, the objection of this report is rather more
-practical, hence there is not detailed derivation of $H(z)$ and proof of
+practical, hence there is no detailed derivation of $H(z)$ and proof of
 that equation \ref{eq:allpass} is true for the above all-pass filters,
 in fact that would be rather redundant.
 
 \subsection{Max/MSP Patches}
 
 The implementation of Schroeder's reverberator requires two major components -
-a comb and an all-pass filter. \emph{Max/MSP} contains built-in object for
+a comb and an all-pass filter. \emph{Max/MSP} provides built-in objects for
 these two types of filters, however the task of this project had been to
 implement the reverberator utilising only the most primitive of instances of
-built-in objects.
+built-in objects. Figures \ref{max:comb} and \ref{max:allpass} demonstrate
+the unit reverberators which had been implemented and figure \ref{max:guts}
+show the inner body of the patch filed as
+\emph{\texttt{`reverb.schroeder\~{}.maxpat`}}.
 
-The source code repository of this project (see seciton 1.1) also contains
+Once the reverberator has been implemented, the major challenge was to find
+the appropriate ratio of the gain and delay values. According to Gardner
+\cite{gardner1998algorithms}, the following formula can be used to find the
+values of $g_i$ from $m_i$:\begin{equation}\label{eq:coef}
+  g_i=10^{-3m_i/T_r}
+\end{equation}
+where $m_i$ is the delay time in seconds and $T_r$ is the reverberation time.
+The implementation in \emph{Max} (shown in figure \ref{max:guts}) would had
+been rather unacceptable without this particular relation, because the lister
+may simply damaged their ears. The sub-patch \emph{\texttt{`calc.coef`}}
+implements the equation given by Gardner, there are also \emph{\texttt{`filt.comb-lp\~{}`}} and
+\emph{\texttt{`filt.allpass-time-delay\~{}`}} which are representing the comb
+filter with low-pass feedback (Moorer's comb) and an all-pass filter as seen
+in figure \ref{allpass:A}\ . The reason why the low-pass filter had to be
+placed in the feedback loop of the comb filter, is simply because the sound
+without it was rather hard to believe being of a reverb unit. It is very clear
+that a commercially available reverberator today sounds much different from
+it's "early digital" ancestor circa 1960s, moreover it becomes obvious what
+sort of "metallic" and "unnatural" sounds were described by all of the
+researchers cited.
+
+
+The source code repository of this project (see sec. 1.1) also contains
 several files which are the results of some of the early experiments.
 Amongst miscellaneous, there is a implementation of Puckette \& Stautner
 rotation-matrix stereo reverb (filename \emph{\texttt{`reverb.matrix-rotation.maxpat`}})
@@ -406,7 +431,13 @@ and \emph{\texttt{`filt.2nd-order\~{}.maxpat`}}).
   \centering
   \includegraphics[scale=0.5]{images/filt.allpass.png}
   \caption{\emph{All-pass filter implemented in Max/MSP}}
-  \label{max:comb}
+  \label{max:allpass}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{images/guts.png}
+  \caption{\emph{Internals of the reverberator patch}}
+  \label{max:guts}
 \end{figure}
 
 
