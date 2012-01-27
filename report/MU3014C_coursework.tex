@@ -339,7 +339,11 @@ void  comb_test_topology_b
   allpass_var_a = < -0.500000 0.500000 0.250000 0.125000 0.062500 0.031250 >
   allpass_var_b = < -0.500000 0.750000 0.375000 0.187500 0.093750 0.046875 >
   \end{verbatim}
-
+  As it has been said already, the objection of this report is rather more
+  practical, hence there is no detailed derivation of $H(z)$ and proof of
+  that equation \ref{eq:allpass} is true for the above all-pass filters,
+  in fact that would be rather redundant.
+  \pagebreak
 \lstset{caption={Extract of the all-pass filter test program},label=allpass:test}
 \begin{lstlisting}
 void  allpass_test_topology_a
@@ -373,11 +377,8 @@ void  allpass_test_topology_b
    printf(">\n");
 }
 \end{lstlisting}
-\vspace{2em}
-As it has been said already, the objection of this report is rather more
-practical, hence there is no detailed derivation of $H(z)$ and proof of
-that equation \ref{eq:allpass} is true for the above all-pass filters,
-in fact that would be rather redundant.
+\pagebreak
+\include{filt.all-pass}
 
 \subsection{Max/MSP Patches}
 
@@ -419,8 +420,6 @@ rotation-matrix stereo reverb (filename \emph{\texttt{`reverb.matrix-rotation.ma
 as well as some more primitive filters (e.g. \emph{\texttt{`filt.1st-order\~{}.maxpat`}}
 and \emph{\texttt{`filt.2nd-order\~{}.maxpat`}}).
 
-\pagebreak
-\include{filt.all-pass}
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{images/filt.comb.png}
